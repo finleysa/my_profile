@@ -1,10 +1,11 @@
 const express = require("express");
 const path = require("path");
 const PORT = process.env.PORT || 3000;
-
+const favicon = require("serve-favicon");
 const app = express();
 
 app.all(/.*/, wwwredirect);
+app.use(favicon(path.join(__dirname, "dist", "img", "favicon.ico")));
 app.use(express.static(path.join(__dirname, "dist")));
 app.set("views", path.join(__dirname, "dist"));
 app.set("view engine", "html");
